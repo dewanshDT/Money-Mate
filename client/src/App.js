@@ -13,7 +13,7 @@ function App() {
     <TransProvider>
     <Router>
       <Switch>
-      <Route exact path="/">{user ? <Dashboard /> : <Login user={user} />}</Route>
+      <Route exact path="/"><Login user={user} /></Route>
         <Route exact path="/login">
           <Login user={user} />
         </Route>
