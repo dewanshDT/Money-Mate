@@ -18,7 +18,7 @@ const Register = () => {
         withCredentials: true,
       });
       localStorage.setItem("user", res.data);
-      console.log(res.data);
+      console.log(res.data.data);
       window.location.href = "/dashboard"
     } catch (err) {
       console.log(err);

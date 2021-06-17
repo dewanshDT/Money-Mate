@@ -11,7 +11,7 @@ import { TransContext } from "./context/TransContext";
 const Dashboard = () => {
   const [trans] = React.useContext(TransContext);
 
-  return trans ? (
+  return trans.length || trans.length >= 0 ? (
     <>
       <Header />
       <div className="container">
