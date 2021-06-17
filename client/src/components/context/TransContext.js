@@ -1,5 +1,5 @@
 // import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
 
 export const TransContext = React.createContext();
@@ -12,7 +12,7 @@ export const TransProvider = ({ children }) => {
       const user = localStorage.getItem("user");
       console.log(user);
       const res = await axios({
-        url: `http://localhost:5000/api/${user}/transactions`,
+        url: `/api/${user}/transactions`,
         method: "GET",
         withCredentials: true,
       });

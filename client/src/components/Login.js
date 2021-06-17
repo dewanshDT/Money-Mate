@@ -10,7 +10,7 @@ const Login = ({ user }) => {
     try {
       const res = await axios({
         method: "POST",
-        url: "http://localhost:5000/auth/login",
+        url: "/auth/login",
         data: {
           username: username,
           password: password,

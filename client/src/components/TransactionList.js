@@ -11,7 +11,7 @@ const TransactionList = () => {
       const user = localStorage.getItem("user");
       console.log(user);
       const res = await axios({
-        url: `http://localhost:5000/api/${user}/transactions`,
+        url: `/api/${user}/transactions`,
         method: "GET",
         withCredentials: true,
       });
@@ -26,7 +26,7 @@ const TransactionList = () => {
     try {
       await axios({
         method: "DELETE",
-        url: `http://localhost:5000/api/${localStorage.getItem(
+        url: `/api/${localStorage.getItem(
           "user"
         )}/transactions/${id}`,
         withCredentials: true,
