@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 
-const Login = ({ user }) => {
+const Login = ({ user, setIsLoggedIn }) => {
+  const [register, setRegister] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -10,7 +11,7 @@ const Login = ({ user }) => {
     try {
       const res = await axios({
         method: "POST",
-        url: "/auth/login",
+        url: "http://localhost:5000/auth/login",
         data: {
           username: username,
           password: password,
@@ -19,7 +20,29 @@ const Login = ({ user }) => {
       });
       localStorage.setItem("user", res.data);
       console.log(res.data);
-      window.location.href = "/dashboard"
+      setIsLoggedIn(true);
+    } catch (err) {
+      console.log(err);
+    }
+    setUsername("");
+    setPassword("");
+  };
+
+  const registerUser = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios({
+        method: "POST",
+        url: "http://localhost:5000/auth/register",
+        data: {
+          username: username,
+          password: password,
+        },
+        withCredentials: true,
+      });
+      localStorage.setItem("user", res.data);
+      console.log(res.data.data);
+      setIsLoggedIn(true);
     } catch (err) {
       console.log(err);
     }
@@ -30,11 +53,11 @@ const Login = ({ user }) => {
   return (
     <form
       onSubmit={(e) => {
-        login(e);
+        register ? registerUser(e) : login(e);
       }}
       className="logsin"
     >
-      <h1>😃 login.</h1>
+      <h1>{register ? "👋 signup" :"😃 login."}</h1>
       <label>Username</label>
       <div className="form-control">
         <input
@@ -54,7 +77,13 @@ const Login = ({ user }) => {
         />
       </div>
       <button className="btn">login</button>
-      <a href="/register">create new account</a>
+      <a
+        onClick={() => {
+          setRegister(!register);
+        }}
+      >
+        {register ? "login" : "create new account"}
+      </a>
     </form>
   );
 };

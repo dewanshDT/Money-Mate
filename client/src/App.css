@@ -38,14 +38,22 @@ body {
 
 .header {
   margin: 1rem 0;
-  text-align: center;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  /* align-items: baseline; */
 }
 
 .header h2 {
   font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header h2 span {
+  display: inline-block;
+  margin: auto .2em;
+
 }
 
 .container {
@@ -256,6 +264,7 @@ button {
   text-decoration: none;
   text-align: center;
   margin-top: .5em;
+  cursor: pointer;
 }
 
 .logsin p {

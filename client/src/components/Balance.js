@@ -1,8 +1,8 @@
 import React from "react";
-import { TransContext } from "./context/TransContext";
+import { GlobalContext } from "./context/GlobalContext";
 
 const Balance = () => {
-  const [trans] = React.useContext(TransContext);
+  const [trans] = React.useContext(GlobalContext);
 
   let amounts = trans.map((item) => item.amount);
 

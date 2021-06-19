@@ -10,7 +10,7 @@ const Register = () => {
     try {
       const res = await axios({
         method: "POST",
-        url: "/auth/register",
+        url: "http://localhost:5000/auth/register",
         data: {
           username: username,
           password: password,

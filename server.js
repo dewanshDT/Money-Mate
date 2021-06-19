@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -35,7 +35,17 @@ app.use(
   })
 );
 
-app.use(session({ secret: "thisisafuckinsecret" }));
+app.use(
+  session({
+    secret: "thisisafuckinsecret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false,
+      maxAge: 24 * 60 * 60 * 1000 * 7
+    },
+  })
+);
 app.use(cookieParser("thisisafuckinsecret"));
 
 app.use(passport.initialize());
@@ -89,7 +99,8 @@ app.post(
   verifyUser,
   async (req, res) => {
     const { username } = req.params;
-    const { description, amount } = req.body;1
+    const { description, amount } = req.body;
+    1;
     try {
       const transaction = await Transaction.findOne({ username: username });
       if (transaction) {
@@ -122,9 +133,7 @@ app.delete(
     try {
       const user = await Transaction.findOne({ username: username });
       const data = user.data;
-      let newData = data.filter((item) => 
-        item._id != id
-      );
+      let newData = data.filter((item) => item._id != id);
       user.data = newData;
       await user.save();
       res.json(user);
@@ -138,7 +147,7 @@ app.post(
   "/auth/login",
   passport.authenticate("local", {
     failureFlash: true,
-    failureMessage: "invalid username or password"
+    failureMessage: "invalid username or password",
   }),
   (req, res) => {
     res.send(req.user.username);
@@ -171,8 +180,10 @@ app.post("/auth/logout", (req, res) => {
 // });
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static('client/build'));
-  app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
 }
 
 app.listen(

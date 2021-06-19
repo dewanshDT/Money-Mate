@@ -1,16 +1,16 @@
 import axios from "axios";
 import React from "react";
-import { TransContext } from "./context/TransContext";
+import { GlobalContext } from "./context/GlobalContext";
 
 const AddTransaction = () => {
-  const [trans, setTrans, getTransactions] = React.useContext(TransContext);
+  const [getTransactions] = React.useContext(GlobalContext);
   const [text, setText] = React.useState("");
   const [amount, setAmount] = React.useState(0);
 
   const addTransaction = async (e) => {
     e.preventDefault();
     const res = await axios({
-      url: `/api/${localStorage.getItem("user")}/transactions`,
+      url: `http://localhost:5000/api/${localStorage.getItem("user")}/transactions`,
       method: "POST",
       withCredentials: true,
       data: {
@@ -18,6 +18,7 @@ const AddTransaction = () => {
         amount: amount
       }
     });
+    console.log(res)
     getTransactions();
     setText("");
     setAmount(0);
