@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:3000", //location of react app we are using
+    origin: "*", //location of react app we are using
     credentials: true,
   })
 );
