@@ -22,7 +22,7 @@ const Dashboard = ({ setIsLoggedIn }) => {
         withCredentials: true,
       });
       const data = res.data.data;
-      console.log(data);
+      console.log(res.data);
       setTrans(data);
     } catch (e) {
       console.log(e);
