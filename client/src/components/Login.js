@@ -33,7 +33,7 @@ const Login = ({ user, setIsLoggedIn }) => {
     try {
       const res = await axios({
         method: "POST",
-        url: "http://localhost:5000/auth/register",
+        url: "/auth/register",
         data: {
           username: username,
           password: password,

@@ -17,7 +17,7 @@ const Dashboard = ({ setIsLoggedIn }) => {
       const user = localStorage.getItem("user");
       console.log(user);
       const res = await axios({
-        url: `http://localhost:5000/api/${user}/transactions`,
+        url: `/api/${user}/transactions`,
         method: "GET",
         withCredentials: true,
       });

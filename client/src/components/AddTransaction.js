@@ -10,7 +10,7 @@ const AddTransaction = () => {
   const addTransaction = async (e) => {
     e.preventDefault();
     const res = await axios({
-      url: `http://localhost:5000/api/${localStorage.getItem("user")}/transactions`,
+      url: `/api/${localStorage.getItem("user")}/transactions`,
       method: "POST",
       withCredentials: true,
       data: {
