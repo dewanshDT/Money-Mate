@@ -11,7 +11,7 @@ const TransactionList = () => {
       const user = localStorage.getItem("user");
       console.log(user);
       const res = await axios({
-        url: `/api/${user}/transactions`,
+        url: `http://money-mate.herokuapp.com/api/${user}/transactions`,
         method: "GET",
         withCredentials: true,
       });
@@ -26,7 +26,7 @@ const TransactionList = () => {
     try {
       await axios({
         method: "DELETE",
-        url: `/api/${localStorage.getItem("user")}/transactions/${id}`,
+        url: `http://money-mate.herokuapp.com/api/${localStorage.getItem("user")}/transactions/${id}`,
         withCredentials: true,
       });
       await getTransactions();

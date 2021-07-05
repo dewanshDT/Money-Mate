@@ -17,7 +17,7 @@ const Dashboard = ({ setIsLoggedIn }) => {
       const user = localStorage.getItem("user");
       console.log(user);
       const res = await axios({
-        url: `/api/${user}/transactions`,
+        url: `http://money-mate.herokuapp.com/api/${user}/transactions`,
         method: "GET",
         withCredentials: true,
       });

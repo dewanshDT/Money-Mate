@@ -10,7 +10,7 @@ const Register = () => {
     try {
       const res = await axios({
         method: "POST",
-        url: "/auth/register",
+        url: "http://money-mate.herokuapp.com/auth/register",
         data: {
           username: username,
           password: password,

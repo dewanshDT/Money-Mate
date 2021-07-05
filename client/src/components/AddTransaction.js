@@ -10,7 +10,7 @@ const AddTransaction = () => {
   const addTransaction = async (e) => {
     e.preventDefault();
     const res = await axios({
-      url: `/api/${localStorage.getItem("user")}/transactions`,
+      url: `http://money-mate.herokuapp.com/api/${localStorage.getItem("user")}/transactions`,
       method: "POST",
       withCredentials: true,
       data: {
