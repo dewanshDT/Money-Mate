@@ -11,7 +11,7 @@ const Login = ({ user, setIsLoggedIn }) => {
     try {
       const res = await axios({
         method: "POST",
-        url: "http://money-mate.herokuapp.com/auth/login",
+        url: "/auth/login",
         data: {
           username: username,
           password: password,
