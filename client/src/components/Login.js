@@ -1,17 +1,19 @@
 import React from "react";
 import axios from "axios";
+import { GlobalContext } from "./context/GlobalContext";
 
 const Login = ({ user, setIsLoggedIn }) => {
   const [register, setRegister] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [url] = React.useContext(GlobalContext);
 
   const login = async (e) => {
     e.preventDefault();
     try {
       const res = await axios({
         method: "POST",
-        url: "/auth/login",
+        url: `${url}/auth/login`,
         data: {
           username: username,
           password: password,
@@ -33,7 +35,7 @@ const Login = ({ user, setIsLoggedIn }) => {
     try {
       const res = await axios({
         method: "POST",
-        url: "http://money-mate.herokuapp.com/auth/register",
+        url: `${url}/auth/register`,
         data: {
           username: username,
           password: password,
@@ -76,7 +78,7 @@ const Login = ({ user, setIsLoggedIn }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button className="btn">login</button>
+      <button className="btn">{register ? "sign up": "login"}</button>
       <a
         onClick={() => {
           setRegister(!register);
