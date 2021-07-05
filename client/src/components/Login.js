@@ -6,14 +6,13 @@ const Login = ({ user, setIsLoggedIn }) => {
   const [register, setRegister] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [url] = React.useContext(GlobalContext);
 
   const login = async (e) => {
     e.preventDefault();
     try {
       const res = await axios({
         method: "POST",
-        url: `${url}/auth/login`,
+        url: "/auth/login",
         data: {
           username: username,
           password: password,
@@ -35,7 +34,7 @@ const Login = ({ user, setIsLoggedIn }) => {
     try {
       const res = await axios({
         method: "POST",
-        url: `${url}/auth/register`,
+        url: `/auth/register`,
         data: {
           username: username,
           password: password,

@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "https://money-mate.herokuapp.com" || "http://localhost:5000", //location of react app we are using
+    origin:  "https://money-mate.herokuapp.com", //location of react app we are using
     credentials: true,
   })
 );

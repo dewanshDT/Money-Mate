@@ -3,10 +3,9 @@ import React from "react";
 import { GlobalContext } from "./context/GlobalContext";
 
 const Header = ({setIsLoggedIn}) => {
-  const [url] = React.useContext(GlobalContext);
   const logout = async () => {
     try {
-      const res = await axios({url:`${url}/auth/logout`, method: "POST", withCredentials: true});
+      const res = await axios({url:`/auth/logout`, method: "POST", withCredentials: true});
       console.log(res.data);
       setIsLoggedIn(false);
       localStorage.clear();

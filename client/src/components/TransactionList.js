@@ -4,14 +4,14 @@ import { GlobalContext } from "./context/GlobalContext";
 import axios from "axios";
 
 const TransactionList = () => {
-  const [trans, setTrans, url] = useContext(GlobalContext);
+  const [trans, setTrans] = useContext(GlobalContext);
 
   const getTransactions = async () => {
     try {
       const user = localStorage.getItem("user");
       console.log(user);
       const res = await axios({
-        url: `${url}/api/${user}/transactions`,
+        url: `/api/${user}/transactions`,
         method: "GET",
         withCredentials: true,
       });
@@ -26,7 +26,7 @@ const TransactionList = () => {
     try {
       await axios({
         method: "DELETE",
-        url: `${url}/api/${localStorage.getItem("user")}/transactions/${id}`,
+        url: `/api/${localStorage.getItem("user")}/transactions/${id}`,
         withCredentials: true,
       });
       await getTransactions();

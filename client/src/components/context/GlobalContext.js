@@ -6,18 +6,13 @@ export const GlobalContext = React.createContext();
 
 export const TransProvider = ({ children }) => {
   const [trans, setTrans] = React.useState([]);
-  const [url, seturl] = React.useState(
-    process.env.NODE_ENV == "development"
-      ? "http://localhost:5000"
-      : ""
-  );
 
   const getTransactions = async () => {
     try {
       const user = localStorage.getItem("user");
       console.log(user);
       const res = await axios({
-        url: `${url}/api/${user}/transactions`,
+        url: `/api/${user}/transactions`,
         method: "GET",
         withCredentials: true,
       });
@@ -30,7 +25,7 @@ export const TransProvider = ({ children }) => {
   };
 
   return (
-    <GlobalContext.Provider value={[trans, setTrans, getTransactions, url]}>
+    <GlobalContext.Provider value={[trans, setTrans, getTransactions]}>
       {children}
     </GlobalContext.Provider>
   );

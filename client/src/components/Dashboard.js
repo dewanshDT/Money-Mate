@@ -10,19 +10,19 @@ import { GlobalContext } from "./context/GlobalContext";
 import axios from "axios";
 
 const Dashboard = ({ setIsLoggedIn }) => {
-  const [trans, setTrans, url] = useContext(GlobalContext);
+  const [trans, setTrans] = useContext(GlobalContext);
 
   const getTransactions = async () => {
     try {
       const user = localStorage.getItem("user");
       console.log(user);
       const res = await axios({
-        url: `${url}/api/${user}/transactions`,
+        url: `/api/${user}/transactions`,
         method: "GET",
         withCredentials: true,
       });
       const data = res.data.data;
-      console.log(res.data);
+      console.log(data);
       setTrans(data);
     } catch (e) {
       console.log(e);

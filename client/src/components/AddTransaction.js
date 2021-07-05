@@ -3,14 +3,14 @@ import React from "react";
 import { GlobalContext } from "./context/GlobalContext";
 
 const AddTransaction = () => {
-  const [getTransactions, url] = React.useContext(GlobalContext);
+  const [getTransactions] = React.useContext(GlobalContext);
   const [text, setText] = React.useState("");
   const [amount, setAmount] = React.useState(0);
 
   const addTransaction = async (e) => {
     e.preventDefault();
     const res = await axios({
-      url: `${url}/api/${localStorage.getItem("user")}/transactions`,
+      url: `/api/${localStorage.getItem("user")}/transactions`,
       method: "POST",
       withCredentials: true,
       data: {
