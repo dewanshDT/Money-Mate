@@ -1,60 +1,20 @@
 import React from "react";
-import axios from "axios";
 import { GlobalContext } from "./context/GlobalContext";
+import { useHistory } from "react-router";
 
-const Login = ({ user, setIsLoggedIn }) => {
+const Login = () => {
   const [register, setRegister] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-
-  const login = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios({
-        method: "POST",
-        url: "/auth/login",
-        data: {
-          username: username,
-          password: password,
-        },
-        withCredentials: true,
-      });
-      localStorage.setItem("user", res.data);
-      console.log(res.data);
-      setIsLoggedIn(true);
-    } catch (err) {
-      console.log(err);
-    }
-    setUsername("");
-    setPassword("");
-  };
-
-  const registerUser = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios({
-        method: "POST",
-        url: `/auth/register`,
-        data: {
-          username: username,
-          password: password,
-        },
-        withCredentials: true,
-      });
-      localStorage.setItem("user", res.data);
-      console.log(res.data.data);
-      setIsLoggedIn(true);
-    } catch (err) {
-      console.log(err);
-    }
-    setUsername("");
-    setPassword("");
-  };
+  const {login, registerUser} = React.useContext(GlobalContext);
+  const history = useHistory();
 
   return (
     <form
       onSubmit={(e) => {
-        register ? registerUser(e) : login(e);
+        e.preventDefault();
+        register ? registerUser(username, password) : login(username, password);
+        history.push("/");
       }}
       className="logsin"
     >

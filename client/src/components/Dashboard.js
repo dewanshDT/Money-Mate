@@ -7,36 +7,20 @@ import TransactionList from "./TransactionList";
 import AddTransaction from "./AddTransaction";
 import Footer from "./Footer";
 import { GlobalContext } from "./context/GlobalContext";
-import axios from "axios";
+import { useHistory } from "react-router";
 
-const Dashboard = ({ setIsLoggedIn }) => {
-  const [trans, setTrans] = useContext(GlobalContext);
-
-  const getTransactions = async () => {
-    try {
-      const user = localStorage.getItem("user");
-      console.log(user);
-      const res = await axios({
-        url: `/api/${user}/transactions`,
-        method: "GET",
-        withCredentials: true,
-      });
-      const data = res.data.data;
-      console.log(data);
-      setTrans(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+const Dashboard = () => {
+  const {trans, getTransactions, user} = useContext(GlobalContext);
+  const history = useHistory();
 
   useEffect(() => {
     console.log("🌋Mounted");
     getTransactions();
-  }, []);
+  }, [user]);
 
   return trans ? (
     <>
-      <Header setIsLoggedIn={setIsLoggedIn} />
+      <Header />
       <div className="container">
         <Balance />
         <IncomeExpences />
@@ -54,7 +38,8 @@ const Dashboard = ({ setIsLoggedIn }) => {
         type="button"
         className="btn"
         onClick={() => {
-          setIsLoggedIn(false);
+          localStorage.clear();
+          history.push("/login");
         }}
       >
         login

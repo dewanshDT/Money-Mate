@@ -1,39 +1,9 @@
 import React, { useContext } from "react";
 import Transaction from "./Transaction";
 import { GlobalContext } from "./context/GlobalContext";
-import axios from "axios";
 
 const TransactionList = () => {
-  const [trans, setTrans] = useContext(GlobalContext);
-
-  const getTransactions = async () => {
-    try {
-      const user = localStorage.getItem("user");
-      console.log(user);
-      const res = await axios({
-        url: `/api/${user}/transactions`,
-        method: "GET",
-        withCredentials: true,
-      });
-      const data = res.data.data;
-      setTrans(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const deleteTransaction = async (id) => {
-    try {
-      await axios({
-        method: "DELETE",
-        url: `/api/${localStorage.getItem("user")}/transactions/${id}`,
-        withCredentials: true,
-      });
-      await getTransactions();
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  const {trans, setTrans, deleteTransaction} = useContext(GlobalContext);
 
   return (
     <>

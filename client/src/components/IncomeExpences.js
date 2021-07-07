@@ -2,7 +2,7 @@ import React from "react";
 import { GlobalContext } from "./context/GlobalContext";
 
 const IncomeExpences = () => {
-  const [trans] = React.useContext(GlobalContext);
+  const {trans} = React.useContext(GlobalContext);
 
   const incomeArr = trans.map((item) => Math.abs(item.amount));
   const expenseArr = trans

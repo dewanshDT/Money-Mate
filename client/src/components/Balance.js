@@ -2,7 +2,7 @@ import React from "react";
 import { GlobalContext } from "./context/GlobalContext";
 
 const Balance = () => {
-  const [trans] = React.useContext(GlobalContext);
+  const {trans} = React.useContext(GlobalContext);
 
   let amounts = trans.map((item) => item.amount);
 

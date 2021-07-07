@@ -1,20 +1,20 @@
 import "./App.css";
-import React, { useState } from "react";
+import React from "react";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import { TransProvider } from "./components/context/GlobalContext";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 function App() {
-  const [user] = useState(localStorage.getItem("user"));
-  const [isLoggedIn, setIsLoggedIn] = useState(user ? true : false);
 
   return (
     <TransProvider>
-      {isLoggedIn ? (
-        <Dashboard setIsLoggedIn={setIsLoggedIn} />
-      ) : (
-        <Login user={user} setIsLoggedIn={setIsLoggedIn} />
-      )}
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/login" component={Login} />
+        </Switch>
+      </Router>
     </TransProvider>
   );
 }
