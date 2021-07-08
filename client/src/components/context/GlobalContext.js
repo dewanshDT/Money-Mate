@@ -6,7 +6,7 @@ export const GlobalContext = React.createContext();
 export const TransProvider = ({ children }) => {
   const [trans, setTrans] = useState([]);
   const [user, setUser] = useState(localStorage.getItem("user"));
-  const mainURL = "http://localhost:5000";
+  const mainURL = "";
 
   useEffect(() => {
     setUser(localStorage.getItem("user"))
