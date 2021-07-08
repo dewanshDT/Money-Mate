@@ -176,6 +176,13 @@ form {
   flex-direction: column;
 }
 
+.alert {
+  background: #ff202090;
+  border-radius: 99px;
+  padding: .2em .5em;
+  color: #fff;
+}
+
 .form-control {
   display: flex;
   flex-direction: column;

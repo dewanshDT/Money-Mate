@@ -12,8 +12,8 @@ const Header = () => {
       <button 
         type="button" 
         className="btn logout" 
-        onClick={() => {
-          logout();
+        onClick={async () => {
+          await logout();
           history.push("/login");
         }}
       >

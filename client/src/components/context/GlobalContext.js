@@ -6,7 +6,7 @@ export const GlobalContext = React.createContext();
 export const TransProvider = ({ children }) => {
   const [trans, setTrans] = useState([]);
   const [user, setUser] = useState(localStorage.getItem("user"));
-  const mainURL = "";
+  const mainURL = "http://localhost:5000";
 
   useEffect(() => {
     setUser(localStorage.getItem("user"))
@@ -25,9 +25,10 @@ export const TransProvider = ({ children }) => {
       });
       localStorage.setItem("user", res.data);
       console.log(res.data);
-      setUser(true);
+      return {status: "succesfull", user: res.data};
     } catch (err) {
       console.log(err);
+      return {status: "failed", user: null};
     }
   };
 
@@ -43,10 +44,10 @@ export const TransProvider = ({ children }) => {
         withCredentials: true,
       });
       localStorage.setItem("user", res.data);
-      console.log(res.data.data);
-      setUser(true);
+      console.log(res.data);
+      return {status: "succesfull", user: res.data};
     } catch (err) {
-      console.log(err);
+      return {status: "failed", user: null};
     }
   };
 

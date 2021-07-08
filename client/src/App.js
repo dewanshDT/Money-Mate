@@ -4,16 +4,17 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import { TransProvider } from "./components/context/GlobalContext";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
 
   return (
     <TransProvider>
       <Router>
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
+        {/* <Switch> */}
+          <PrivateRoute exact path="/" component={Dashboard} />
           <Route path="/login" component={Login} />
-        </Switch>
+        {/* </Switch> */}
       </Router>
     </TransProvider>
   );

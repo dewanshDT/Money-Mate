@@ -6,19 +6,24 @@ const Login = () => {
   const [register, setRegister] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
   const {login, registerUser} = React.useContext(GlobalContext);
-  const history = useHistory();
+
+  async function submitHandler(e) {
+      e.preventDefault();
+      setError("")
+      const res = register ? await registerUser(username, password) : await login(username, password);
+      console.log(res);
+      res.status === "failed" ? register ? setError("username already exist") :setError("incorrect username or password") : window.location.href = "/";
+  }
 
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        register ? registerUser(username, password) : login(username, password);
-        history.push("/");
-      }}
+      onSubmit={e => submitHandler(e)}
       className="logsin"
     >
       <h1>{register ? "👋 signup" :"😃 login."}</h1>
+      {error && <div className="alert">{error}</div>}
       <label>Username</label>
       <div className="form-control">
         <input
