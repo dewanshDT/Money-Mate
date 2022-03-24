@@ -1,28 +1,31 @@
-import React from "react";
-import { GlobalContext } from "./context/GlobalContext";
-import { useHistory } from "react-router";
+import React from "react"
+import { GlobalContext } from "./context/GlobalContext"
 
 const Login = () => {
-  const [register, setRegister] = React.useState(false);
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [error, setError] = React.useState("");
-  const {login, registerUser} = React.useContext(GlobalContext);
+  // eslint-disable-next-line
+  const [register, setRegister] = React.useState(false)
+  const [username, setUsername] = React.useState("")
+  const [password, setPassword] = React.useState("")
+  const [error, setError] = React.useState("")
+  const { login, registerUser } = React.useContext(GlobalContext)
 
   async function submitHandler(e) {
-      e.preventDefault();
-      setError("")
-      const res = register ? await registerUser(username, password) : await login(username, password);
-      console.log(res);
-      res.status === "failed" ? register ? setError("username already exist") :setError("incorrect username or password") : window.location.href = "/";
+    e.preventDefault()
+    setError("")
+    const res = register
+      ? await registerUser(username, password)
+      : await login(username, password)
+    console.log(res)
+    res.status === "failed"
+      ? register
+        ? setError("username already exist")
+        : setError("incorrect username or password")
+      : (window.location.href = "/")
   }
 
   return (
-    <form
-      onSubmit={e => submitHandler(e)}
-      className="logsin"
-    >
-      <h1>{register ? "👋 signup" :"😃 login."}</h1>
+    <form onSubmit={(e) => submitHandler(e)} className="logsin">
+      <h1>{register ? "👋 signup" : "😃 login."}</h1>
       {error && <div className="alert">{error}</div>}
       <label>Username</label>
       <div className="form-control">
@@ -42,16 +45,17 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button className="btn">{register ? "sign up": "login"}</button>
-      <a
+      <button className="btn">{register ? "sign up" : "login"}</button>
+      <div
+        className="anchor"
         onClick={() => {
-          setRegister(!register);
+          setRegister(!register)
         }}
       >
         {register ? "login" : "create new account"}
-      </a>
+      </div>
     </form>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react"
+import axios from "axios"
 
-export const GlobalContext = React.createContext();
+export const GlobalContext = React.createContext()
 
 export const TransProvider = ({ children }) => {
-  const [trans, setTrans] = useState([]);
-  const [user, setUser] = useState(localStorage.getItem("user"));
-  const mainURL = "";
+  const [trans, setTrans] = useState([])
+  const [user, setUser] = useState(localStorage.getItem("user"))
+  const mainURL = ""
 
   useEffect(() => {
     setUser(localStorage.getItem("user"))
-  }, [localStorage.getItem("user")]);
+    // eslint-disable-next-line
+  }, [localStorage.getItem("user")])
 
   const login = async (username, password) => {
     try {
@@ -22,15 +23,15 @@ export const TransProvider = ({ children }) => {
           password: password,
         },
         withCredentials: true,
-      });
-      localStorage.setItem("user", res.data);
-      console.log(res.data);
-      return {status: "succesfull", user: res.data};
+      })
+      localStorage.setItem("user", res.data)
+      console.log(res.data)
+      return { status: "succesfull", user: res.data }
     } catch (err) {
-      console.log(err);
-      return {status: "failed", user: null};
+      console.log(err)
+      return { status: "failed", user: null }
     }
-  };
+  }
 
   const registerUser = async (username, password) => {
     try {
@@ -42,42 +43,46 @@ export const TransProvider = ({ children }) => {
           password: password,
         },
         withCredentials: true,
-      });
-      localStorage.setItem("user", res.data);
-      console.log(res.data);
-      return {status: "succesfull", user: res.data};
+      })
+      localStorage.setItem("user", res.data)
+      console.log(res.data)
+      return { status: "succesfull", user: res.data }
     } catch (err) {
-      return {status: "failed", user: null};
+      return { status: "failed", user: null }
     }
-  };
+  }
 
   const logout = async () => {
     try {
-      const res = await axios({url:`${mainURL}/auth/logout`, method: "POST", withCredentials: true});
-      console.log(res.data);
-      localStorage.clear();
-      setTrans([]);
+      const res = await axios({
+        url: `${mainURL}/auth/logout`,
+        method: "POST",
+        withCredentials: true,
+      })
+      console.log(res.data)
+      localStorage.clear()
+      setTrans([])
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
-  };
+  }
 
   const getTransactions = async () => {
     try {
-      const user = localStorage.getItem("user");
-      console.log(user);
+      const user = localStorage.getItem("user")
+      console.log(user)
       const res = await axios({
         url: `${mainURL}/api/${user}/transactions`,
         method: "GET",
         withCredentials: true,
-      });
-      const data = res.data.data;
-      console.log(data);
-      setTrans(data);
+      })
+      const data = res.data.data
+      console.log(data)
+      setTrans(data)
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
-  };
+  }
 
   const addTransaction = async (text, amount) => {
     const res = await axios({
@@ -86,29 +91,44 @@ export const TransProvider = ({ children }) => {
       withCredentials: true,
       data: {
         description: text,
-        amount: amount
-      }
-    });
+        amount: amount,
+      },
+    })
     console.log(res)
-    getTransactions();
-  };
+    getTransactions()
+  }
 
   const deleteTransaction = async (id) => {
     try {
       await axios({
         method: "DELETE",
-        url: `${mainURL}/api/${localStorage.getItem("user")}/transactions/${id}`,
+        url: `${mainURL}/api/${localStorage.getItem(
+          "user"
+        )}/transactions/${id}`,
         withCredentials: true,
-      });
-      await getTransactions();
+      })
+      await getTransactions()
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
-  };
+  }
 
   return (
-    <GlobalContext.Provider value={{trans, setTrans, getTransactions, login, registerUser, logout, user, setUser, deleteTransaction, addTransaction}}>
+    <GlobalContext.Provider
+      value={{
+        trans,
+        setTrans,
+        getTransactions,
+        login,
+        registerUser,
+        logout,
+        user,
+        setUser,
+        deleteTransaction,
+        addTransaction,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
-  );
-};
+  )
+}

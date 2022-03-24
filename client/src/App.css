@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;500;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,500;600&display=swap");
 
 :root {
   --mainbg: #fff5;
-  --green: #1DB954;
+  --green: #1db954;
   --red: #f04848;
   --background: #adadad;
   --foreground: #222;
@@ -52,8 +52,7 @@ body {
 
 .header h2 span {
   display: inline-block;
-  margin: auto .2em;
-
+  margin: auto 0.2em;
 }
 
 .container {
@@ -62,7 +61,7 @@ body {
 
 .inc-exp-container {
   display: flex;
-  
+
   flex-grow: 1;
   text-align: center;
   background: var(--mainbg);
@@ -179,7 +178,7 @@ form {
 .alert {
   background: #ff202090;
   border-radius: 99px;
-  padding: .2em .5em;
+  padding: 0.2em 0.5em;
   color: #fff;
 }
 
@@ -260,21 +259,21 @@ button {
   width: max-content;
   padding: 0.2em 1em;
   border-radius: 99px;
-  position:absolute;
+  position: absolute;
   top: -50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.logsin a {
+.logsin .anchor {
   color: #8c39fa;
   text-decoration: none;
   text-align: center;
-  margin-top: .5em;
+  margin-top: 0.5em;
   cursor: pointer;
 }
 
 .logsin p {
   text-align: center;
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
