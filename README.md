@@ -5,8 +5,6 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -27,8 +25,6 @@
     <a href="https://github.com/dewanshdt/Money-Mate/issues">Request Feature</a>
   </p>
 </p>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <!-- <details open="open">
@@ -56,33 +52,33 @@
   </ol>
 </details> -->
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-This application is made only for learning purpose I learned cookie and session authentication and it implementation in react porject.
+This application is made only for learning purpose I learned cookie and session authentication and it implementation in react porject. This is a **PWA** which can be installed as an application in any mobile or desktop device.
 
 ### Built With
 
-* [React](https://reactjs.org)
-* [Nodejs](https://nodejs.org)
-* [MongoDB](https://mongodb.com)
-
-
+- [React](https://reactjs.org)
+- [Nodejs](https://nodejs.org)
+- [MongoDB](https://mongodb.com)
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 In the root folder create a folder "config", inside this folder create a file "config.env" and add the following code inside it
+
 ```
 NODE_ENV = development
 PORT = 5000
 MONGO_URI = mongodb://localhost:27017/moneyMate
 ```
-if you wanna run it in production mode change ```NODE_ENV``` variable to ```production```
+
+if you wanna run it in production mode change `NODE_ENV` variable to `production`
 
 ### Installation
 
@@ -92,32 +88,28 @@ if you wanna run it in production mode change ```NODE_ENV``` variable to ```prod
    ```
 2. Create config files and enviroment variables
 
-3. Install NPM packages
+3. Install NPM packages on both server and client
    ```sh
-   npm install
+   npm run install-server-client
    ```
-   
 4. To run the program in development mode run
    ```
    npm run dev
    ```
-   
-5. To run the program in production mode change ```NODE_ENV``` variable to ```production``` and run
+5. To run the program in production mode change `NODE_ENV` variable to `production` and run
    ```
    npm start
    ```
    Then go to http://localhost:5000
 
-
-
 <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/dewanshdt/Money-Mate/issues) for a list of proposed features (and known issues).
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -128,16 +120,14 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 Your Name - [@ThakurDewansh](https://twitter.com/ThakurDewansh) - dewansh.space@gmail.com
